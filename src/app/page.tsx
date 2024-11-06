@@ -60,7 +60,7 @@ export default function LoginPage() {
     <div className="hero bg-base-200 min-h-screen">
   <div className="hero-content flex-col lg:flex-row-reverse">
     <div className="text-center lg:text-left">
-      <h1 className="text-5xl font-bold">TITULO</h1>
+      <h1 className="text-5xl font-bold">App nombre</h1>
       <p className="py-6">
         LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING ELIT. VELIT
       </p>
