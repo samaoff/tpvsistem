@@ -1,9 +1,13 @@
 
-## Getting Started
+## Sistema de punto de venta con nextjs (app) + electron + daisyui + tailwind 
 
-First, run the development server:
-# electron
+Para iniciar el servidor
+
+# Modo Electron (VENTANA DE WINDOWS)
+```bash
 npm run electron-dev
+```
+# Modo Web 
 ```bash
 npm run dev
 # or
@@ -13,24 +17,40 @@ pnpm dev
 # or
 bun dev
 ```
+Abrir [http://localhost:3000](http://localhost:3000) en el navegador para ver los resultados.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+# ACTUALIZACIONES PARA DESARROLLADORES EJECUTAR .BAT
+Para tener proyecto actualizado entre equipos distintos antes de empezar a editar el codigo ejecuta ./updateproyecto.bat desde la terminal, eso actualizara el proyecto siempre desde github
+```bash
+#"Actualizando el repositorio local desde GitHub..."
+git pull origin main
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+#"Instalando dependencias del proyecto si hemos instalado algunas..."
+npm install
 
-## Learn More
+#"¡El proyecto está actualizado y listo para trabajar!"
+```
 
-To learn more about Next.js, take a look at the following resources:
+# SUBIR EL PROYECTO CON LOS CAMBIOS EJECUTAR SUBIRPROYECTO.BAT
+Para subir los cambios realizados ejecutar ./subirproyecto.bat desde la terminal, eso subira el proyecto a github 
+```bash
+#Añadiendo cambios al área de staging...
+git add .
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+#Ingrese un mensaje para el commit:
+set /p commit_message=
+git commit -m "%commit_message%"
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+#Subiendo cambios al repositorio remoto...
+git push origin main
 
-## Deploy on Vercel
+#¡Cambios subidos exitosamente!
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# KIT UI daisyUI - DISEÑO 
+https://daisyui.com/docs/install/TA
+
+# TAILWIND CSS
+https://tailwindcss.com/docs/columns 
