@@ -2,25 +2,61 @@
   "name": "tpv",
   "version": "0.1.0",
   "private": true,
+  "main": "electron/main.js",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "start-electron": "sleep 5 && electron .",
+    "electron-dev": "cross-env NODE_ENV=development concurrently \"npm run dev\" \"wait-on http://localhost:3000 && electron .\"",
+    "electron-build": "npm run build && electron-builder",
     "lint": "next lint"
   },
   "dependencies": {
+    "@prisma/client": "^5.21.1",
+    "autoprefixer": "^10.4.20",
+    "next": "15.0.2",
+    "prisma": "^5.21.1",
     "react": "19.0.0-rc-02c0e824-20241028",
     "react-dom": "19.0.0-rc-02c0e824-20241028",
-    "next": "15.0.2"
+    "sqlite3": "^5.1.7"
   },
   "devDependencies": {
-    "typescript": "^5",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "postcss": "^8",
-    "tailwindcss": "^3.4.1",
+    "concurrently": "^9.1.0",
+    "cross-env": "^7.0.3",
+    "daisyui": "^4.12.14",
+    "electron": "^33.0.2",
+    "electron-builder": "^25.1.8",
     "eslint": "^8",
-    "eslint-config-next": "15.0.2"
+    "eslint-config-next": "15.0.2",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.14",
+    "typescript": "^5",
+    "wait-on": "^8.0.1"
+  },
+  "build": {
+    "appId": "com.tuapp.electron",
+    "files": [
+      "electron/**/*",
+      ".next/**/*",
+      "package.json",
+      "prisma/**/*",
+      "dev.db"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    },
+    "extraResources": [
+      {
+        "from": "prisma/dev.db",
+        "to": "dev.db"
+      }
+    ],
+    "mac": {
+      "category": "public.app-category.productivity"
+    }
   }
 }
