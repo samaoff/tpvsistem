@@ -57,7 +57,10 @@ export default function LoginPage() {
 
 
   return (
-    <div className="hero bg-base-200 min-h-screen">
+    // Página principals
+<div className="flex flex-col h-screen">
+
+    <div className="flex-grow h-4/5 flex items-center justify-center bg-gray-100">
   <div className="hero-content flex-col lg:flex-row-reverse">
     <div className="text-center lg:text-left">
       <h1 className="text-5xl font-bold">App nombre</h1>
@@ -110,7 +113,9 @@ export default function LoginPage() {
       </div>
 
 {/* Mostrar teclado solo si un campo está enfocado */}
-{currentField && <VirtualKeyboard onKeyPress={handleKeyPress} />}
+{currentField && <VirtualKeyboard onKeyPress={handleKeyPress} onClose={function (): void {
+          throw new Error('Function not implemented.');
+        } } />}
 
 {/* Toast Notification */}
 {showToast && (
@@ -130,5 +135,7 @@ export default function LoginPage() {
 
     </div>
     </div>
+{/* //fin de la pagina principal */}
+</div>
   );
 }
