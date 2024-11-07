@@ -62,7 +62,7 @@ export default function LoginPage() {
       <div className="flex-grow h-4/5 flex items-center justify-center bg-gray-100">
 
      
-        <div className="card w-96 bg-white shadow-xl ">
+        <div className="card w-full max-w-md lg:max-w-lg xl:max-w-xl bg-white shadow-xl">
           <div className="card-body">
             <h1 className="text-4xl font-bold text-blue-800 text-center">Giupos</h1>
             <h5 className="text-1xl font-bold text-blue-800 text-center">Sistema de punto de venta</h5>

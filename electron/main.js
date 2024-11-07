@@ -1,11 +1,17 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow,screen  } = require('electron');
 const path = require('path');
 const isDev = process.env.NODE_ENV !== 'production';
 
+
+
+
 function createWindow() {
+    // Obtener el tamaño de la pantalla principal
+    const { width, height } = screen.getPrimaryDisplay().workAreaSize;
+    
   const win = new BrowserWindow({
-    width: 1368,
-    height: 766,
+    width: width,
+    height: height,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       contextIsolation: true,

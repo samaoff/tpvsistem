@@ -42,7 +42,7 @@ const VirtualKeyboardDrawer: React.FC<VirtualKeyboardDrawerProps> = ({ onKeyPres
     {/* Encabezado */}
     <div className="flex justify-between items-center mb-1">
       <h2 className="text-lg font-semibold text-white">Teclado Virtual</h2>
-      <button onClick={onClose} className="btn bg-red-500 text-center font-mono text-white hover:text-blue-950 hover:bg-red-300 w-14 h-14 m-1 text-sm">        Cerrar
+      <button onClick={onClose} className="btn bg-red-500 text-center font-mono text-white hover:text-blue-950 hover:bg-red-300 w-14 h-14 md:w-14 md:h-14 lg:w-16 lg:h-16 m-1 text-sm">        Cerrar
       </button>
     </div>
 
@@ -63,7 +63,7 @@ const VirtualKeyboardDrawer: React.FC<VirtualKeyboardDrawerProps> = ({ onKeyPres
               <button
                   key={key}
                   onClick={() => onKeyPress(isShiftActive ? key.toUpperCase() : key.toLowerCase())}
-                  className="btn bg-slate-300 text-center font-mono text-blue-950 hover:text-blue-950 hover:bg-red-300 w-20 h-16 m-1 text-xl"
+                  className="btn bg-slate-300 text-center font-mono text-blue-950 hover:text-blue-950 hover:bg-red-300 w-20 h-16 md:w-14 md:h-14 lg:w-16 lg:h-16 m-1 text-xl"
                 >
                   {isShiftActive ? key.toUpperCase() : key.toLowerCase()}
                 </button>
