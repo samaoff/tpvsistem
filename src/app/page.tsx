@@ -1,12 +1,19 @@
 'use client';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+
 // Importar usuario por defecto
+
 import defaultUser from './config/defaultUser';
-import VirtualKeyboard from './components/VirtualKeyboard';
+
 import VirtualKeyboardDrawer from './components/VirtualKeyboardDrawer';
+import { useConfig } from './context/ConfigContext';
 
 export default function LoginPage() {
+
+
+  const {config} = useConfig();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -55,16 +62,21 @@ export default function LoginPage() {
     }
   };
 
-  return (
-    <div className="flex flex-col h-screen">
-      {/* Pantalla principal: 80% de la altura */}
 
-      <div className="flex-grow h-4/5 flex items-center justify-center bg-gray-100">
+
+
+
+
+  return (
+    <div className="flex flex-col h-screen scroll-m-1 ">
+
+
+      <div  className="flex-grow  flex items-center justify-center ">
 
      
-        <div className="card w-full max-w-md lg:max-w-lg xl:max-w-xl bg-white shadow-xl">
+        <div className="card w-full max-w-md lg:max-w-lg xl:max-w-xl bg-white shadow-xl ">
           <div className="card-body">
-            <h1 className="text-4xl font-bold text-blue-800 text-center">Giupos</h1>
+            <h1 className="text-4xl font-bold text-blue-800 text-center">{config?.nombreApp}</h1>
             <h5 className="text-1xl font-bold text-blue-800 text-center">Sistema de punto de venta</h5>
             <div className="divider"></div>
             {/* <h2 className="card-title">Iniciar Sesión</h2> */}
@@ -106,7 +118,7 @@ export default function LoginPage() {
                 </button>
                 <div className="divider"></div>
                 <div className="text-center mt-4">
-                  <p className="text-sm text-gray-500">version zzzzzz</p>
+                  <p className="text-sm text-gray-500">Versión: {config?.version}</p>
                 </div>
               </div>
             </form>

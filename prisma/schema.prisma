@@ -15,3 +15,11 @@ model Usuario {
   nombre  String
   email   String  @unique
 }
+
+model Parametros {
+  id           Int     @id @default(autoincrement())
+  nombreApp    String  @default("Giupos")  // Nombre de la aplicación
+  version      String  @default("1.0.0")    // Versión del programa
+  licencia     String?                       // Licencia del programa (opcional)
+  theme        String  @default("acid") // Tema por defecto
+}

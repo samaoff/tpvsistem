@@ -1,5 +1,4 @@
-// app/dashboard/layout.tsx
-import { ReactNode } from "react";
+'use client';
 import {
   HomeIcon,
   LucideLogOut,
@@ -7,68 +6,84 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import { ReactNode } from "react";
+import { useConfig } from "../context/ConfigContext";
+
+
 
 export default function DashboardLayout({ children }: { children: ReactNode }) {
+
+  const {config} = useConfig();
+
   return (
-    <div className="flex h-screen">
+    
+    <div className="flex h-screen text-base-content ">
+
       {/* Barra lateral */}
-      <aside className="w-64 bg-white shadow-xl flex flex-col">
-        <div className="p-5">
-          <Image src="/logo.png" alt="Logo" width={150} height={150} />
-          <h2 className="text-3xl font-semibold text-blue-600">GIUPOS</h2>
-          <h2 className="text-sm font-semibold text-blue-600">
+      <aside className="w-64 shadow-xl flex flex-col ">
+        <div className="p-7">
+          <Image src="/favicon.ico" alt="Logo" width={100} height={100} className="justify-center"/> <br /> 
+          <h2 className="text-3xl font-semibold">{config?.nombreApp}</h2>
+          <h2 className="text-sm font-semibold">
             Sistema de punto de venta
           </h2>
+          <h6 className="text-sm font-mono">
+            Versión: {config?.version}
+          </h6>
         </div>
-
+        <br />
         <nav className="flex-1 space-y-2 overflow-y-auto h-full gap-5 nav-scroll">
           {/* Menú principal */}
           <ul className="menu rounded-box w-full text-lg space-y-4">
+
+
             {/* Opción de Inicio */}
-            <li className="bg-blue-950 text-white rounded-md">
-              <Link
-                href="/dashboard"
-                className="flex items-center space-x-2 p-2 "
-              >
-                <HomeIcon className="w-5 h-5 text-white" />
-                <span>Inicio</span>
-              </Link>
+            <li>  <Link href="/dashboard" className="bg-base-300 text-base flex items-center space-x-3 p-2 font-bold">
+            
+                <HomeIcon className="w-5 h-5 text-base" />
+              
+                     <span className="text-base">Inicio</span>
+                
+                </Link>
+              
+              
+              
             </li>
   
             {/* Opción de General con submenús */}
             <li>
               <details>
-                <summary className="bg-blue-950 text-white flex items-center space-x-3 p-2 hover:bg-blue-950 ">
-                  <Presentation className="w-5 h-5 text-white" />
-                  <span>General</span>
+                <summary className="bg-base-300 text-base flex items-center space-x-3 p-2 font-bold">
+                  <Presentation className="w-5 h-5 text-base" />
+                  <span className="text-base">General</span>
                 </summary>
-                <ul className="text-blue-950">
+                <ul className="">
                   <li>
                     <Link
                       href="/dashboard/general/empresa"
-                      className="flex items-center space-x-2 hover:bg-blue-100 rounded-md p-2"
+                      className="flex items-center space-x-2 rounded-md p-2"
                     >
-                      <span>Empresa</span>
+                      <span className="text-base">Empresa</span>
                     </Link>
                   </li>
                   <li>
                     <Link
                       href="/dashboard/configuracion"
-                      className="flex items-center space-x-2 hover:bg-blue-100 rounded-md p-2"
+                      className="flex items-center space-x-2rounded-md p-2"
                     >
-                      <span>Locales</span>
+                         <span className="text-base">Locales</span>
                     </Link>
                   </li>
                   <li>
                     <details>
-                      <summary className="flex items-center space-x-2cursor-pointer hover:bg-blue-100 rounded-md p-2">
-                        <span>Terminales</span>
+                    <summary className="bg-base-300 text-base flex items-center space-x-3 p-2 font-bold">
+                           <span className="text-base">Terminales</span>
                       </summary>
                       <ul className="pl-4">
                         <li>
                           <Link
                             href="/dashboard/tarifas"
-                            className=" hover:bg-blue-100 rounded-md p-2"
+                            className="rounded-md p-2"
                           >
                             11
                           </Link>
@@ -76,7 +91,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
                         <li>
                           <Link
                             href="/dashboard/herramientas"
-                            className=" hover:bg-blue-100 rounded-md p-2"
+                            className="rounded-md p-2"
                           >
                             22
                           </Link>
@@ -91,25 +106,25 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
             {/* Opción de usuarios con submenús */}
             <li>
               <details >
-                <summary className="bg-blue-950 text-white flex items-center space-x-3 p-2 hover:bg-blue-950 ">
-                  <Presentation className="w-5 h-5 text-white" />
-                  <span>Usuarios</span>
+                   <summary className="bg-base-300 text-base flex items-center space-x-3 p-2 font-bold">
+                  <Presentation className="w-5 h-5 text-base" />
+                  <span className="text-base">Usuarios</span>
                 </summary>
-                <ul className="text-blue-950">
+                <ul className="">
                   <li>
                     <Link
                       href="/dashboard/general"
-                      className="flex items-center space-x-2 hover:bg-blue-100 rounded-md p-2"
+                      className="flex items-center space-x-2 rounded-md p-2"
                     >
-                      <span>Perfiles de usuarios</span>
+                         <span className="text-base">Perfiles de usuarios</span>
                     </Link>
                   </li>
                   <li>
                     <Link
                       href="/dashboard/configuracion"
-                      className="flex items-center space-x-2 hover:bg-blue-100 rounded-md p-2"
+                      className="flex items-center space-x-2rounded-md p-2"
                     >
-                      <span>Usuarios</span>
+                         <span className="text-base">Usuarios</span>
                     </Link>
                   </li>
                 </ul>
@@ -121,89 +136,89 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
             {/* Opción de administracion con submenús */}
             <li>
               <details >
-                <summary className="bg-blue-950 text-white flex items-center space-x-3 p-2 hover:bg-blue-950 ">
-                  <Presentation className="w-5 h-5 text-white" />
-                  <span>Administración</span>
+                 <summary className="bg-base-300 text-base flex items-center space-x-3 p-2 font-bold">
+                  <Presentation className="w-5 h-5 text-base" />
+                  <span className="text-base">Administración</span>
                 </summary>
-                <ul className="text-blue-950">
+                <ul className="">
                   <li>
                     <Link
                       href="/dashboard/general"
-                      className="flex items-center space-x-2 hover:bg-blue-100 rounded-md p-2"
+                      className="flex items-center space-x-2rounded-md p-2"
                     >
-                      <span>Familias</span>
+                         <span className="text-base">Familias</span>
                     </Link>
                   </li>
                   <li>
                     <Link
                       href="/dashboard/configuracion"
-                      className="flex items-center space-x-2 hover:bg-blue-100 rounded-md p-2"
+                      className="flex items-center space-x-2rounded-md p-2"
                     >
-                      <span>Productos</span>
+                         <span className="text-base">Productos</span>
                     </Link>
                   </li>
                   <li>
                     <Link
                       href="/dashboard/configuracion"
-                      className="flex items-center space-x-2 hover:bg-blue-100 rounded-md p-2"
+                      className="flex items-center space-x-2rounded-md p-2"
                     >
-                      <span>Menus</span>
+                         <span className="text-base">Menus</span>
                     </Link>
                   </li>
                   <li>
                     <Link
                       href="/dashboard/configuracion"
-                      className="flex items-center space-x-2 hover:bg-blue-100 rounded-md p-2"
+                      className="flex items-center space-x-2rounded-md p-2"
                     >
-                      <span>Alergenos</span>
+                         <span className="text-base">Alergenos</span>
                     </Link>
                   </li>
                   <li>
                     <Link
                       href="/dashboard/configuracion"
-                      className="flex items-center space-x-2 hover:bg-blue-100 rounded-md p-2"
+                      className="flex items-center space-x-2rounded-md p-2"
                     >
-                      <span>Impresoras</span>
+                         <span className="text-base">Impresoras</span>
                     </Link>
                   </li>
                   <li>
                     <Link
                       href="/dashboard/configuracion"
-                      className="flex items-center space-x-2 hover:bg-blue-100 rounded-md p-2"
+                      className="flex items-center space-x-2rounded-md p-2"
                     >
-                      <span>Notas de preparacion</span>
+                         <span className="text-base">Notas de preparacion</span>
                     </Link>
                   </li>
                   <li>
                     <Link
                       href="/dashboard/configuracion"
-                      className="flex items-center space-x-2 hover:bg-blue-100 rounded-md p-2"
+                      className="flex items-center space-x-2rounded-md p-2"
                     >
-                      <span>Orden de preparacion</span>
+                         <span className="text-base">Orden de preparacion</span>
                     </Link>
                   </li>
                   <li>
                     <Link
                       href="/dashboard/configuracion"
-                      className="flex items-center space-x-2 hover:bg-blue-100 rounded-md p-2"
+                      className="flex items-center space-x-2rounded-md p-2"
                     >
-                      <span>Mesas</span>
+                         <span className="text-base">Mesas</span>
                     </Link>
                   </li>
                   <li>
                     <Link
                       href="/dashboard/configuracion"
-                      className="flex items-center space-x-2 hover:bg-blue-100 rounded-md p-2"
+                      className="flex items-center space-x-2rounded-md p-2"
                     >
-                      <span>Ubicaciones</span>
+                         <span className="text-base">Ubicaciones</span>
                     </Link>
                   </li>
                   <li>
                     <Link
                       href="/dashboard/configuracion"
-                      className="flex items-center space-x-2 hover:bg-blue-100 rounded-md p-2"
+                      className="flex items-center space-x-2rounded-md p-2"
                     >
-                      <span>Notas de preparacion</span>
+                         <span className="text-base">Notas de preparacion</span>
                     </Link>
                   </li>
                 </ul>
@@ -213,49 +228,49 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
             {/* Opción de tarifas y precios con submenús */}
             <li>
               <details >
-                <summary className="bg-blue-950 text-white flex items-center space-x-3 p-2 hover:bg-blue-950 ">
-                  <Presentation className="w-5 h-5 text-white" />
-                  <span>Tarifas</span>
+                   <summary className="bg-base-300 text-base flex items-center space-x-3 p-2 font-bold">
+                  <Presentation className="w-5 h-5 text-base" />
+                  <span className="text-base">Tarifas</span>
                 </summary>
-                <ul className="text-blue-950">
+                <ul className="">
                   <li>
                     <Link
                       href="/dashboard/general"
-                      className="flex items-center space-x-2 hover:bg-blue-100 rounded-md p-2"
+                      className="flex items-center space-x-2rounded-md p-2"
                     >
-                      <span>Impuestos</span>
+                         <span className="text-base">Impuestos</span>
                     </Link>
                   </li>
                   <li>
                     <Link
                       href="/dashboard/configuracion"
-                      className="flex items-center space-x-2 hover:bg-blue-100 rounded-md p-2"
+                      className="flex items-center space-x-2rounded-md p-2"
                     >
-                      <span>Formas de pago</span>
+                         <span className="text-base">Formas de pago</span>
                     </Link>
                   </li>
                   <li>
                     <Link
                       href="/dashboard/configuracion"
-                      className="flex items-center space-x-2 hover:bg-blue-100 rounded-md p-2"
+                      className="flex items-center space-x-2rounded-md p-2"
                     >
-                      <span>Precios globales</span>
+                         <span className="text-base">Precios globales</span>
                     </Link>
                   </li>
                   <li>
                     <Link
                       href="/dashboard/configuracion"
-                      className="flex items-center space-x-2 hover:bg-blue-100 rounded-md p-2"
+                      className="flex items-center space-x-2rounded-md p-2"
                     >
-                      <span>Promociones</span>
+                         <span className="text-base">Promociones</span>
                     </Link>
                   </li>
                   <li>
                     <Link
                       href="/dashboard/configuracion"
-                      className="flex items-center space-x-2 hover:bg-blue-100 rounded-md p-2"
+                      className="flex items-center space-x-2rounded-md p-2"
                     >
-                      <span>Descuentos</span>
+                         <span className="text-base">Descuentos</span>
                     </Link>
                   </li>
                 </ul>
@@ -265,25 +280,25 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
             {/* Opción de herramientas con submenús */}
             <li>
               <details>
-                <summary className="bg-blue-950 text-white flex items-center space-x-3 p-2 hover:bg-blue-950 ">
-                  <Presentation className="w-5 h-5 text-white" />
-                  <span>Herramientas</span>
+                   <summary className="bg-base-300 text-base flex items-center space-x-3 p-2 font-bold">
+                  <Presentation className="w-5 h-5 text-base" />
+                  <span className="text-base">Herramientas</span>
                 </summary>
-                <ul className="text-blue-950">
+                <ul className="">
                   <li>
                     <Link
                       href="/dashboard/general"
-                      className="flex items-center space-x-2 hover:bg-blue-100 rounded-md p-2"
+                      className="flex items-center space-x-2rounded-md p-2"
                     >
-                      <span>Ordenar familias</span>
+                         <span className="text-base">Ordenar familias</span>
                     </Link>
                   </li>
                   <li>
                     <Link
                       href="/dashboard/configuracion"
-                      className="flex items-center space-x-2 hover:bg-blue-100 rounded-md p-2"
+                      className="flex items-center space-x-2rounded-md p-2"
                     >
-                      <span>Ordenar articulos</span>
+                         <span className="text-base">Ordenar articulos</span>
                     </Link>
                   </li>
                 </ul>
@@ -293,39 +308,39 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
             {/* Opción de informes con submenús */}
             <li>
               <details>
-                <summary className="bg-blue-950 text-white flex items-center space-x-3 p-2 hover:bg-blue-950 ">
-                  <Presentation className="w-5 h-5 text-white" />
-                  <span>Informes</span>
+                   <summary className="bg-base-300 text-base flex items-center space-x-3 p-2 font-bold">
+                  <Presentation className="w-5 h-5 text-base" />
+                  <span className="text-base">Informes</span>
                 </summary>
-                <ul className="text-blue-950">
+                <ul className="">
                   <li>
                     <Link
                       href="/dashboard/general"
-                      className="flex items-center space-x-2 hover:bg-blue-100 rounded-md p-2"
+                      className="flex items-center space-x-2rounded-md p-2"
                     >
-                      <span>Resumen de ventas</span>
+                         <span className="text-base">Resumen de ventas</span>
                     </Link>
                   </li>
                   <li>
                     <Link
                       href="/dashboard/configuracion"
-                      className="flex items-center space-x-2 hover:bg-blue-100 rounded-md p-2"
+                      className="flex items-center space-x-2rounded-md p-2"
                     >
-                      <span>Resumen fiscal</span>
+                         <span className="text-base">Resumen fiscal</span>
                     </Link>
                   </li>
                   <li>
                     <Link
                       href="/dashboard/configuracion"
-                      className="flex items-center space-x-2 hover:bg-blue-100 rounded-md p-2"
+                      className="flex items-center space-x-2rounded-md p-2"
                     >
-                      <span>Resumen de caja</span>
+                         <span className="text-base">Resumen de caja</span>
                     </Link>
                   </li>
                   <li>
                     <Link
                       href="/dashboard/configuracion"
-                      className="flex items-center space-x-2 hover:bg-blue-100 rounded-md p-2"
+                      className="flex items-center space-x-2rounded-md p-2"
                     >
                       <span className="">Informe por familias</span>
                     </Link>
@@ -333,31 +348,56 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
                   <li>
                     <Link
                       href="/dashboard/configuracion"
-                      className="flex items-center space-x-2 hover:bg-blue-100 rounded-md p-2"
+                      className="flex items-center space-x-2rounded-md p-2"
                     >
-                      <span>Informe por productos</span>
+                         <span className="text-base">Informe por productos</span>
                     </Link>
                   </li>
                   <li>
                     <Link
                       href="/dashboard/configuracion"
-                      className="flex items-center space-x-2 hover:bg-blue-100 rounded-md p-2"
+                      className="flex items-center space-x-2rounded-md p-2"
                     >
-                      <span>Informe forma de pagos</span>
+                         <span className="text-base">Informe forma de pagos</span>
                     </Link>
                   </li>
                   <li>
                     <Link
                       href="/dashboard/configuracion"
-                      className="flex items-center space-x-2 hover:bg-blue-100 rounded-md p-2"
+                      className="flex items-center space-x-2rounded-md p-2"
                     >
-                      <span>Informe forma de usuario</span>
+                         <span className="text-base">Informe forma de usuario</span>
                     </Link>
                   </li>
                 </ul>
               </details>
             </li>
+      {/* Opción de informes con submenús */}
+      <li>
+              <details>
+                   <summary className="bg-base-300 text-base flex items-center space-x-3 p-2 font-bold">
+                  <Presentation className="w-5 h-5 text-base" />
+                  <span className="text-base">Ajustes</span>
+                </summary>
+                <ul className="">
+                  <li>
+                    <Link
+                      href="/dashboard/ajustes"
+                      className="flex items-center space-x-2rounded-md p-2"
+                    >
+                         <span className="text-base">Ajustes Generales</span>
+                    </Link>
+                  </li>
+                 
+                </ul>
+              </details>
+            </li>
 
+
+
+
+       
+          
 
 
 
@@ -378,7 +418,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
             <LucideLogOut className="w-10 h-8 " />
           <Link href="/" className="font-mono font-bold">
           
-            <span>Cerrar sesión</span>
+               <span className="text-base">Cerrar sesión</span>
           </Link>
             </div>
       
