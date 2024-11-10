@@ -10,11 +10,9 @@ import { useConfig } from '@/app/context/ConfigContext';
 export default function EmpresaForm() {
   
   const [nombre, setNombre] = useState('');
-  const [defaultLayout, setDefaultLayout] = useState('');
   const [metaTitle, setMetaTitle] = useState('');
   const [metaKeywords, setMetaKeywords] = useState('');
   const [metaDescription, setMetaDescription] = useState('');
-  const {config} = useConfig();
   const [currentField, setCurrentField] = useState<'nombre' | 'metaTitle' | 'metaKeywords' | 'metaDescription' | null>(null);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
@@ -22,7 +20,6 @@ export default function EmpresaForm() {
     e.preventDefault();
     console.log({
       nombre,
-      defaultLayout,
       metaTitle,
       metaKeywords,
       metaDescription,
@@ -49,34 +46,33 @@ export default function EmpresaForm() {
   };
 
   return (
-    <div className=" mx-auto p-8 bg-base-300 rounded-lg shadow-lg" >
-      <h2 className="font-semibold text-base mb-6">Datos de la Empresa</h2>
+    <div className="  p-8 bg-base-300 rounded-lg shadow-lg " >
+      <h2 className="font-semibold text-base mb-6 overflow-y-scroll">Datos de la Empresa</h2>
 
       <form onSubmit={handleSubmit} className="space-y-6">
         <div>
-          <label className="blocktext-base">Nombre</label>
+          <label className="blocktext-base">Nombre Fiscal</label>
           <input
             type="text"
             value={nombre}
             readOnly
             onFocus={() => openDrawer('nombre')}
             placeholder="Nombre de la empresa"
-            className="mt-1 w-full p-2 border bg-base rounded-md  text-white"
+            className="mt-1 w-full p-2 border bg-base rounded-md text-base-content"
           />
         </div>
-
         <div>
-          <label className="blocktext-base">Default Layout</label>
-          <select
-            value={defaultLayout}
-            onChange={(e) => setDefaultLayout(e.target.value)}
-            className="mt-1 w-full p-2 border bg-base rounded-md"
-          >
-            <option value="" disabled>Select a layout</option>
-            <option value="layout1">Layout 1</option>
-            <option value="layout2">Layout 2</option>
-          </select>
+          <label className="blocktext-base">Nombre Comercial</label>
+          <input
+            type="text"
+            value={nombre}
+            readOnly
+            onFocus={() => openDrawer('nombre')}
+            placeholder="Nombre comercial de la empresa"
+            className="mt-1 w-full p-2 border bg-base rounded-md text-base-content"
+          />
         </div>
+       
 
         <div>
           <label className="blocktext-base">Meta Title</label>

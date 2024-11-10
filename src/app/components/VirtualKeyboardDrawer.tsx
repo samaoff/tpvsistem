@@ -13,25 +13,40 @@ const VirtualKeyboardDrawer: React.FC<VirtualKeyboardDrawerProps> = ({ onKeyPres
   const letterKeys = [
     ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
     ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'],
-    ['Z', 'X', 'C', 'V', 'B', 'N', 'M','@', '.','_',','],
+    ['Z', 'X', 'C', 'V', 'B', 'N', 'M','@', '.','_','Enter'],
   ];
 
   // Números y botones especiales
-  const numberKeys = ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'Borrar','0'];
+  const numberKeys = ['1', '2', '3', '4', '5', '6', '7', '8', '9',',','0', 'Borrar'];
 
   // Función para alternar Shift
   const toggleShift = () => {
     setIsShiftActive(!isShiftActive);
   };
   
+  const handleKeyPress = (key: string) => {
+    if (key === 'Enter') {
+      onKeyPress('\n');  // Puedes enviar el caracter "Enter" o ejecutar otra función
+      onClose(); // Opcional: cerrar el teclado después de presionar "Enter"
+    } else if (key === 'Borrar') {
+       // Ejemplo: puedes enviar una acción de borrar
+      onKeyPress('Borrar');
+      
+    } else {
+      // tecla _ y - si se activa shift se convierte en _
+      onKeyPress(isShiftActive ? key.toUpperCase(): key.toLowerCase());
+
+
+    }
+  };
 
   return (
-    <div className="fixed inset-x-0 bottom-0 h-75 bg-gray-800 text-white p-4 shadow-lg z-50 
-    transform transition-transform duration-300">
+    <div className="fixed bottom-0 left-0 right-0 bg-gray-800 text-white p-4 rounded-t-2xl
+    transform transition-transform duration-300 ">
       {/* Encabezado con título y botón cerrar */}
-      <div className="flex justify-between items-center mb-4">
+      <div className="flex justify-between items-center mb-2 ">
         <h2 className="text-md font-semibold">Teclado Virtual</h2>
-        <button onClick={onClose} className="bg-red-600 text-white px-3 py-1 rounded-lg hover:bg-red-700">
+        <button onClick={onClose} className="sm:w-4/4 md:w-4/4 lg:w-4/4 xl:w4/4 bg-red-600 text-white px-3 py-1 rounded-lg hover:bg-red-700">
           Cerrar
         </button>
       </div>
@@ -39,13 +54,18 @@ const VirtualKeyboardDrawer: React.FC<VirtualKeyboardDrawerProps> = ({ onKeyPres
       {/* Contenedor principal: Columnas de letras y números */}
       <div className="flex justify-between gap-4 h-full">
         {/* Columnas de letras */}
-        <div className="grid grid-cols-10 gap-4 flex-1">
+        <div className="grid grid-cols-10 sm:gap-1 md:gap-1 lg:w-4/4 xl:w4/4 flex-1">
           {letterKeys.flat().map((key) => (
             <button
+            
               key={key}
-              onClick={() => onKeyPress(isShiftActive ? key.toUpperCase() : key.toLowerCase())}
-              className="flex items-center justify-center bg-gray-700 text-white rounded-md p-5 h-full text-xs md:text-base lg:text-lg hover:bg-blue-600"
+              onClick={() => handleKeyPress(key)}
+              className="flex items-center justify-center
+               bg-gray-700 text-white rounded-md p-6 h-full
+                text-xs md:text-base lg:text-lg hover:opacity-90
+                 hover:bg-blue-600" 
             >
+              
               {isShiftActive ? key.toUpperCase() : key.toLowerCase()}
             </button>
           ))}
@@ -56,9 +76,9 @@ const VirtualKeyboardDrawer: React.FC<VirtualKeyboardDrawerProps> = ({ onKeyPres
           {numberKeys.map((key) => (
             <button
               key={key}
-              onClick={() => onKeyPress(key)}
+              onClick={() => handleKeyPress(key)}
               className={`flex items-center justify-center p-4 ${
-                key === 'Borrar' ? 'bg-red-500' : 'bg-gray-700 hover:bg-blue-600 w-32'
+                key === 'Borrar' ? 'bg-red-500' : 'bg-gray-700 hover:bg-blue-600 w-22'
               } text-white rounded-md p-2 h-full text-xs md:text-base lg:text-lg hover:opacity-90`}
             >
               {key}
@@ -71,15 +91,15 @@ const VirtualKeyboardDrawer: React.FC<VirtualKeyboardDrawerProps> = ({ onKeyPres
       <div className="flex justify-center space-x-2 mt-4">
         <button
           onClick={toggleShift}
-          className={`w-32 h-20 bg-purple-500 text-white rounded-md text-xs md:text-base lg:text-lg font-semibold ${
+          className={`w-32 h-10 bg-purple-500 text-white rounded-md text-xs md:text-base lg:text-lg font-semibold ${
             isShiftActive ? 'bg-purple-700' : ''
           } hover:bg-purple-600`}
         >
           Shift
         </button>
         <button
-          onClick={() => onKeyPress(' ')}
-          className="flex-1 h-20 bg-gray-300 text-gray-800 rounded-md text-xs md:text-base lg:text-lg hover:bg-gray-400"
+          onClick={() => handleKeyPress(' ')}
+          className="flex-1 h-10 bg-gray-300 text-gray-800 rounded-md text-xs md:text-base lg:text-lg hover:bg-gray-400"
         >
           Espacio
         </button>

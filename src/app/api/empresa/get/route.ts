@@ -7,10 +7,10 @@ const prisma = new PrismaClient();
 export async function GET() {
   try {
     // Obtenemos el único registro de configuración
-    const parametros = await prisma.parametros.findFirst();
+    const empresa = await prisma.empresa.findFirst();
 
-    if (parametros) {
-      return NextResponse.json({ success: true, config: parametros });
+    if (empresa) {
+      return NextResponse.json({ success: true, config: empresa });
     } else {
       return NextResponse.json({ success: false, error: 'No se encontraron parámetros' }, { status: 404 });
     }

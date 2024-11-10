@@ -9,6 +9,18 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      screens: {
+        // Añade tus media queries personalizadas aquí
+        'xs': '480px',
+        'sm': '640px',
+        'md': '768px',
+        'lg': '1024px',
+        'xl': '1280px',
+        '2xl': '1536px',
+        // Ejemplo de media query personalizada
+        '3xl': '1600px',
+        'tall': { 'raw': '(min-height: 800px)' },
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",

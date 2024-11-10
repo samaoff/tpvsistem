@@ -18,8 +18,44 @@ model Usuario {
 
 model Parametros {
   id           Int     @id @default(autoincrement())
-  nombreApp    String  @default("Giupos")  // Nombre de la aplicación
-  version      String  @default("1.0.0")    // Versión del programa
-  licencia     String?                       // Licencia del programa (opcional)
-  theme        String  @default("acid") // Tema por defecto
+  nombreApp    String  
+  version      String    
+  licencia     String?                       
+  theme        String
 }
+
+
+model Empresa {
+  id           Int     @id @default(autoincrement())
+  nombre       String?
+  razonSocial  String?
+  cif          String?
+  direccion    String?
+  cp           String?
+  localidad    String?
+  provincia    String?
+  pais         String?
+  telefono     String?
+  email        String?
+  web          String?
+  logo         String?
+  instagram    String?
+  facebook     String?
+
+}
+
+model Familia {
+  id           Int     @id @default(autoincrement())
+  nombre       String
+  descripcion  String?
+  imagen       String?
+}
+
+
+model Alergenos {
+  id           Int     @id @default(autoincrement())
+  nombre       String
+  descripcion  String?
+  imagen       String?
+}
+

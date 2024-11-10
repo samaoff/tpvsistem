@@ -8,6 +8,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ReactNode } from "react";
 import { useConfig } from "../context/ConfigContext";
+import { Header } from "./components/header";
 
 
 
@@ -16,22 +17,14 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
   const {config} = useConfig();
 
   return (
-    
-    <div className="flex h-screen text-base-content ">
-
-      {/* Barra lateral */}
-      <aside className="w-64 shadow-xl flex flex-col ">
-        <div className="p-7">
-          <Image src="/favicon.ico" alt="Logo" width={100} height={100} className="justify-center"/> <br /> 
-          <h2 className="text-3xl font-semibold">{config?.nombreApp}</h2>
-          <h2 className="text-sm font-semibold">
-            Sistema de punto de venta
-          </h2>
-          <h6 className="text-sm font-mono">
-            Versión: {config?.version}
-          </h6>
+    <div className="h-screen flex bg-base-200 text-base-content">
+      {/* Sidebar - Barra lateral fija a la izquierda */}
+      <aside className="w-60 h-full flex flex-col shadow-xl bg-base-100">
+        <div className="p-4">
+          <h2 className="text-3xl font-semibold">Giupos</h2>
+          <h2 className="text-sm font-semibold">Sistema de punto de venta</h2>
+          <h6 className="text-sm font-mono">Versión: {config?.version}</h6>
         </div>
-        <br />
         <nav className="flex-1 space-y-2 overflow-y-auto h-full gap-5 nav-scroll">
           {/* Menú principal */}
           <ul className="menu rounded-box w-full text-lg space-y-4">
@@ -373,25 +366,6 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
               </details>
             </li>
       {/* Opción de informes con submenús */}
-      <li>
-              <details>
-                   <summary className="bg-base-300 text-base flex items-center space-x-3 p-2 font-bold">
-                  <Presentation className="w-5 h-5 text-base" />
-                  <span className="text-base">Ajustes</span>
-                </summary>
-                <ul className="">
-                  <li>
-                    <Link
-                      href="/dashboard/ajustes"
-                      className="flex items-center space-x-2rounded-md p-2"
-                    >
-                         <span className="text-base">Ajustes Generales</span>
-                    </Link>
-                  </li>
-                 
-                </ul>
-              </details>
-            </li>
 
 
 
@@ -412,7 +386,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
 
 
       {/* cerrar session */}
-        <div className=" bg-red-400 text-white md:container p-5">
+        <div className=" bg-red-400 text-white  p-5">
             <div className="flex items-center space-x-2 p-2 ">
 
             <LucideLogOut className="w-10 h-8 " />
@@ -425,8 +399,21 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
         </div>
       </aside>
 
+      {/* Contenedor principal con Header y contenido */}
+      <div className="flex-1 flex flex-col">
+        {/* Header fijo en la parte superior */}
+        <header className="sticky top-0 z-10 bg-base-100 text-base">
+          <Header />
+        </header>
+
       {/* Contenido principal */}
-      <main className="flex-1 p-6 overflow-y-auto">{children}</main>
+      <main className="flex-1 p-4 bg-base-200 text-base-content 
+       overflow-y-scroll ">
+
+        {children}
+        </main>
+    
     </div>
+  </div>
   );
 }
