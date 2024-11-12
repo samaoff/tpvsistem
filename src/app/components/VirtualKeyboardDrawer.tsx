@@ -4,9 +4,17 @@ import React, { useState } from 'react';
 interface VirtualKeyboardDrawerProps {
   onKeyPress: (key: string) => void;
   onClose: () => void;
+  onInputChange: (value: string) => void; // Recibe el valor del campo
+  inputValue: string; // Recibe el valor actual del campo
+  onClearAll: () => void;
 }
 
-const VirtualKeyboardDrawer: React.FC<VirtualKeyboardDrawerProps> = ({ onKeyPress, onClose }) => {
+const VirtualKeyboardDrawer: React.FC<VirtualKeyboardDrawerProps> = ({ 
+  onKeyPress, 
+  onClose,
+  inputValue,
+  onInputChange, 
+  onClearAll  }) => {
   const [isShiftActive, setIsShiftActive] = useState(false);
 
   // Letras organizadas en filas
@@ -43,16 +51,27 @@ const VirtualKeyboardDrawer: React.FC<VirtualKeyboardDrawerProps> = ({ onKeyPres
   return (
     <div className="fixed bottom-0 left-0 right-0 bg-gray-800 text-white p-4 rounded-t-2xl
     transform transition-transform duration-300 ">
+
+
       {/* Encabezado con título y botón cerrar */}
       <div className="flex justify-between items-center mb-2 ">
         <h2 className="text-md font-semibold">Teclado Virtual</h2>
+        
         <button onClick={onClose} className="sm:w-4/4 md:w-4/4 lg:w-4/4 xl:w4/4 bg-red-600 text-white px-3 py-1 rounded-lg hover:bg-red-700">
           Cerrar
         </button>
       </div>
-
+      <div className="mb-2">
+      <input
+        type="text"
+        value={inputValue} // Muestra el valor actual del campo
+        onChange={(e) => onInputChange(e.target.value)} // Permite la entrada física
+        className="w-full mb-4 p-2 rounded-md bg-white text-gray-800 font-bold font-mono"
+      />
+      </div>
       {/* Contenedor principal: Columnas de letras y números */}
       <div className="flex justify-between gap-4 h-full">
+        
         {/* Columnas de letras */}
         <div className="grid grid-cols-10 sm:gap-1 md:gap-1 lg:w-4/4 xl:w4/4 flex-1">
           {letterKeys.flat().map((key) => (
@@ -102,6 +121,12 @@ const VirtualKeyboardDrawer: React.FC<VirtualKeyboardDrawerProps> = ({ onKeyPres
           className="flex-1 h-10 bg-gray-300 text-gray-800 rounded-md text-xs md:text-base lg:text-lg hover:bg-gray-400"
         >
           Espacio
+        </button>
+           <button
+          onClick={onClearAll} // Llama a onClearAll en lugar de onClose
+          className="w-32 h-10 bg-red-600 text-white rounded-md hover:bg-red-700"
+        >
+          Borrar todo
         </button>
       </div>
     </div>

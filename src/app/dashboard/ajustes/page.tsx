@@ -1,10 +1,7 @@
 "use client";
 
-
-import { Divide } from 'lucide';
 import { useConfig } from '../../context/ConfigContext';
 import { useState } from 'react';
-import { DivideCircle } from 'lucide-react';
 
 export default function Settings() {
   const { config, updateConfig } = useConfig();

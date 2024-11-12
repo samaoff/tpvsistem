@@ -7,12 +7,12 @@ import { LucideAArrowDown, LucideArrowBigRightDash, LucideSettings } from "lucid
 import { useConfig } from "../../context/ConfigContext";
 
 export const Header = () => {
-  const { config } = useConfig();
+  const { empresaNombre } = useConfig();
   return (
     <div className="navbar flex flex-row items-center p-3">
       <div className="flex-1">
         <div className="flex text-center flex-col items-start">
-          <h1 className="text-2xl font-bold">{config?.nombreApp}</h1>
+          <h1 className="text-2xl font-bold">{empresaNombre}</h1>
           <h6 className="text-sm font-mono">Licencia pro</h6>
         </div>
  

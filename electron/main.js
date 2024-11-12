@@ -12,11 +12,13 @@ function createWindow() {
   const win = new BrowserWindow({
     width: width,
     height: height,
+    fullscreen: false,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       contextIsolation: true,
       enableRemoteModule: false,
       nodeIntegration: false,
+
     },
   });
 

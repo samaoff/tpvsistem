@@ -4,6 +4,7 @@ import { ConfigProvider } from "./context/ConfigContext";
 
 
 
+
 export const metadata: Metadata = {
   title: "Giupos",
   description: "Punto de venta",

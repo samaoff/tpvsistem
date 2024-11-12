@@ -21,7 +21,8 @@ CREATE TABLE "Empresa" (
 
 -- Inserta una fila por defecto en la tabla Empresa
 INSERT INTO "Empresa" 
-  (nombre, razonSocial, cif, direccion, cp, localidad, provincia, pais,
+  (nombre, razonSocial, cif, direccion, cp, localidad, 
+  provincia, pais,
   telefono, email, web, logo, instagram, facebook) 
 VALUES 
   ('Empresa Demo', 'Demo S.A.', 'A12345678', 'Calle Falsa 123', '07011', 

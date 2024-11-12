@@ -146,8 +146,17 @@ export default function LoginPage() {
         {/* Drawer del Teclado Virtual */}
         {isDrawerOpen && (
         <VirtualKeyboardDrawer
+          onInputChange={(value: string) => setCurrentField(value as 'email' | 'password' | null)}
+          inputValue={currentField === 'email' ? email : password}
           onKeyPress={handleKeyPress}
           onClose={() => setIsDrawerOpen(false)}
+          onClearAll={() => {
+            if (currentField === 'email') {
+              setEmail('');
+            } else if (currentField === 'password') {
+              setPassword('');
+            }
+          }}
         />
       )}
 

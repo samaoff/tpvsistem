@@ -5,7 +5,6 @@ import {
   Presentation,
 } from "lucide-react";
 import Link from "next/link";
-import Image from "next/image";
 import { ReactNode } from "react";
 import { useConfig } from "../context/ConfigContext";
 import { Header } from "./components/header";
@@ -136,7 +135,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
                 <ul className="">
                   <li>
                     <Link
-                      href="/dashboard/general"
+                      href="/dashboard/administracion/familias"
                       className="flex items-center space-x-2rounded-md p-2"
                     >
                          <span className="text-base">Familias</span>
@@ -144,7 +143,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
                   </li>
                   <li>
                     <Link
-                      href="/dashboard/configuracion"
+                      href="/dashboard/administracion/productos"
                       className="flex items-center space-x-2rounded-md p-2"
                     >
                          <span className="text-base">Productos</span>
@@ -152,7 +151,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
                   </li>
                   <li>
                     <Link
-                      href="/dashboard/configuracion"
+                      href="/dashboard/administracion/menus"
                       className="flex items-center space-x-2rounded-md p-2"
                     >
                          <span className="text-base">Menus</span>
@@ -407,7 +406,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
         </header>
 
       {/* Contenido principal */}
-      <main className="flex-1 p-4 bg-base-200 text-base-content 
+      <main className="flex-1  bg-base-300 text-base p-10 
        overflow-y-scroll ">
 
         {children}

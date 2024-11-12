@@ -13,15 +13,18 @@ interface Config {
 
 interface ConfigContextProps {
   config: Config | null;
-  updateConfig: (key: keyof Config, value: string) => void; // Nueva función para actualizar configuración
+  empresaNombre: string;
+  updateConfig: (key: keyof Config, value: string) => void;
+  setEmpresaNombre: (nombre: string) => void;
 }
 
 const ConfigContext = createContext<ConfigContextProps | undefined>(undefined);
 
 export const ConfigProvider = ({ children }: { children: React.ReactNode }) => {
   const [config, setConfig] = useState<Config | null>(null);
+  const [empresaNombre, setEmpresaNombre] = useState<string>('');
 
-  // Cargar la configuración al montar el contexto
+  // Cargar configuración general y nombre de empresa al montar el componente
   useEffect(() => {
     const fetchConfig = async () => {
       try {
@@ -35,13 +38,34 @@ export const ConfigProvider = ({ children }: { children: React.ReactNode }) => {
       }
     };
 
+    const fetchEmpresaData = async () => {
+      try {
+        const response = await fetch('/api/empresa/get');
+        if (!response.ok) throw new Error('Error en la solicitud de la API');
+        
+        const result = await response.json();
+        if (result.success) {
+          setEmpresaNombre(result.data.nombre);
+        } else {
+          console.error(result.error);
+        }
+      } catch (error) {
+        console.error('Error al obtener el nombre de la empresa:', error);
+      }
+    };
+
     fetchConfig();
+    fetchEmpresaData();
   }, []);
 
-  // Función para actualizar un valor de configuración
+
+
+
+
+
+  // Función para actualizar configuración en la base de datos y en el estado
   const updateConfig = async (key: keyof Config, value: string) => {
     try {
-      // Actualizar en la base de datos mediante el endpoint de la API
       const response = await fetch('/api/Config/update/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -49,7 +73,6 @@ export const ConfigProvider = ({ children }: { children: React.ReactNode }) => {
       });
 
       if (response.ok) {
-        // Actualizar el estado local en el contexto
         setConfig((prevConfig) => ({
           ...prevConfig!,
           [key]: value,
@@ -61,13 +84,17 @@ export const ConfigProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   return (
-    <ConfigContext.Provider value={{ config, updateConfig }}>
-      <div data-theme={config?.theme || 'acid'} className="min-h-screen">
+    <ConfigContext.Provider value={{ config, empresaNombre, updateConfig, setEmpresaNombre }}>
+      <div data-theme={config?.theme} className="min-h-screen">
         {children}
       </div>
     </ConfigContext.Provider>
   );
 };
+
+
+
+
 
 export const useConfig = () => {
   const context = useContext(ConfigContext);
