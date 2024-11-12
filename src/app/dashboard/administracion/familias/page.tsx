@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import DataTable from './components/TablaFamilias';
+import TablaFamilias from './components/TablaFamilias';
 
 
 
@@ -26,7 +27,10 @@ const FamiliasPage: React.FC = () => {
   }, []);
 
   return (
-    <div className="p-8">
+
+   <div className="p-8">
+
+   
       <h1 className="text-2xl font-semibold mb-4">Familias</h1>
       <DataTable data={familias} />
     </div>

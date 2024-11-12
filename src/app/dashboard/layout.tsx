@@ -380,22 +380,20 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
       
 
 
+     <div className=" bg-base-200 p-10 items-center justify-center w-full h-20 flex ">
 
+    
+      <Link href="/" className="font-mono font-bold">
+          <LucideLogOut></LucideLogOut>
+              
+          </Link>
+          </div>
+          
 
 
 
       {/* cerrar session */}
-        <div className=" bg-red-400 text-white  p-5">
-            <div className="flex items-center space-x-2 p-2 ">
-
-            <LucideLogOut className="w-10 h-8 " />
-          <Link href="/" className="font-mono font-bold">
-          
-               <span className="text-base">Cerrar sesión</span>
-          </Link>
-            </div>
-      
-        </div>
+        
       </aside>
 
       {/* Contenedor principal con Header y contenido */}
@@ -406,8 +404,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
         </header>
 
       {/* Contenido principal */}
-      <main className="flex-1  bg-base-300 text-base p-10 
-       overflow-y-scroll ">
+      <main className="flex-1 bg-base-100 text-neutral-content overflow-y-scroll p-5">
 
         {children}
         </main>

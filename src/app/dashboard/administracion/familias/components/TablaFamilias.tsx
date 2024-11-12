@@ -3,10 +3,10 @@ import React from 'react'
 export default function TablaFamilias() {
   return (
     <div>
-        <table id="myTable" class="display">
+        <table id="myTable" className="display">
     <thead>
         <tr>
-            <th>Column 1</th>
+            <th>Columsdsdsdsn 1</th>
             <th>Column 2</th>
         </tr>
     </thead>

@@ -3,7 +3,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { LucideAArrowDown, LucideArrowBigRightDash, LucideSettings } from "lucide-react";
+import { LucideAArrowDown, LucideActivity, LucideArrowBigRightDash, LucidePaintbrushVertical, LucideSettings, LucideWorkflow } from "lucide-react";
 import { useConfig } from "../../context/ConfigContext";
 
 export const Header = () => {
@@ -19,11 +19,12 @@ export const Header = () => {
       </div>
 
       <div className="flex bg flex-row justify-start items-center">
-      <div className="join join-vertical lg:join-horizontal">
-      <button className="btn join-item"> <Link href="/dashboard/ajustes">
+      <div className="join  lg:join-horizontal">
+      <Link href="/dashboard/ajustes">
+      <button className="btn join-item font-bold text-lg bg-base-300 text-base "> 
           <LucideSettings></LucideSettings>
-        </Link></button>
-  <button className="btn join-item font-bold text-2xl bg-base-content text-base-100"><LucideArrowBigRightDash></LucideArrowBigRightDash>Punto de venta</button>
+       </button> </Link>
+  <button className="btn join-item font-bold text-lg bg-base-content text-base-100"><LucideWorkflow />TPV</button>
 
 </div>
      

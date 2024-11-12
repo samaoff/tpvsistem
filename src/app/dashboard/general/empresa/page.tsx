@@ -23,10 +23,10 @@ export default function EmpresaForm() {
   const [web, setWeb] = useState('');
   const [facebook, setFacebook] = useState('');
   const [instagram, setInstagram] = useState('');
-     // Accedemos al nombreempresa  y la función para actualizarlo
+  // Accedemos al nombreempresa  y la función para actualizarlo
   const { empresaNombre, setEmpresaNombre } = useConfig();
 
-  
+
 
 
 
@@ -34,9 +34,9 @@ export default function EmpresaForm() {
   useEffect(() => {
     const fetchEmpresaData = async () => {
       try {
-        const response = await fetch('/api/empresa/get'); 
+        const response = await fetch('/api/empresa/get');
         if (!response.ok) throw new Error("Error en la solicitud de la API");
-        
+
         const result = await response.json();
         if (result.success) {
           const empresa = result.data;
@@ -69,7 +69,7 @@ export default function EmpresaForm() {
   // funcion para enviar los datos de la empresa a la base de datos
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-  
+
     try {
       const response = await fetch('/api/empresa/update', {
         method: 'POST',
@@ -92,7 +92,7 @@ export default function EmpresaForm() {
           instagram,
         }),
       });
-  
+
       const result = await response.json();
       if (result.success) {
         setEmpresaNombre(nombre); // Actualiza el nombre en el contexto
@@ -149,11 +149,38 @@ export default function EmpresaForm() {
   };
 
   return (
-    <div className="card bg-base-100  shadow-xl w-full p-10">
-      <h2 className="font-semibold text-base mb-6 ">Datos de la Empresa</h2>
+    <>
+  {/* Botones de acción en un contenedor fijo */}
+  <div className="join join-horizontal fixed bottom-5 right-5  z-50 ">
+  <button
+    type="submit"
+    className="btn join-item bg-base-content text-base-100 hover:bg-neutral-focus transition duration-200 flex items-center space-x-11 w-full h-42 rounded-full"
+  >
+    <SaveIcon className="w-5 h-5" />
+  </button>
+</div>
+    
+<div className='grid grid-cols-2 w-full '>
 
-      <form onSubmit={handleSubmit} className="space-y-6">
-        <div>
+
+<div className="card bg-base-300 w-96 shadow-xl text-base-content grid ">
+  <div className="card-body">
+  <h2 className=" card-title font-bold text-base mb-6  ">Datos de la Empresa</h2>
+
+     
+        {/* nombres y cif */}
+      
+        <div className='grid grid-cols-2 gap-3'>
+        <label className="block text-base">CIF</label>
+          <input
+            type="text"
+            value={cif}
+            onChange={(e) => setCif(e.target.value)}
+            onFocus={() => openDrawer('cif', cif)}
+            placeholder="CIF de la empresa"
+            className="mt-1 w-full p-2 border bg-base rounded-md text-base-content"
+          />
+     
           <label className="block text-base">Nombre Fiscal</label>
           <input
             type="text"
@@ -161,10 +188,9 @@ export default function EmpresaForm() {
             onChange={(e) => setNombre(e.target.value)}
             onFocus={() => openDrawer('nombre', nombre)}
             placeholder="Nombre de la empresa"
-            className="mt-1 w-full p-2 border bg-base rounded-md text-base-content"
+            className="mt-1 w-full p-2 border rounded-md text-base-content"
           />
-        </div>
-        <div>
+
           <label className="block text-base">Razón Social</label>
           <input
             type="text"
@@ -174,20 +200,29 @@ export default function EmpresaForm() {
             placeholder="Razón social de la empresa"
             className="mt-1 w-full p-2 border bg-base rounded-md text-base-content"
           />
+
         </div>
-        <div>
-          <label className="block text-base">CIF</label>
-          <input
-            type="text"
-            value={cif}
-            onChange={(e) => setCif(e.target.value)}
-            onFocus={() => openDrawer('cif', cif)}
-            placeholder="CIF de la empresa"
-            className="mt-1 w-40 p-2 border bg-base rounded-md text-base-content"
-          />
-        </div>
-        <div>
-          <label className="block text-base">Dirección</label>
+   
+  </div>
+
+  
+</div>
+</div>
+<br/><br/>
+
+
+
+{/* otro card */}
+
+
+
+<div className="card bg-base-300 w-full shadow-xl text-base-content grid ">
+  <div className="card-body">
+  <h2 className=" card-title font-bold text-base mb-6  ">Datos de la Empresa</h2>
+         {/* datos direccion */}
+      
+        <div className='grid grid-cols-2 gap-3'>
+        <label className="block text-base">Dirección</label>
           <input
             type="text"
             value={direccion}
@@ -196,19 +231,17 @@ export default function EmpresaForm() {
             placeholder="Dirección de la empresa"
             className="mt-1 w-full p-2 border bg-base rounded-md text-base-content"
           />
-        </div>
-        <div>
-          <label className="block text-base">Codigo Postal</label>
+              <label className="block text-base">Codigo Postal</label>
           <input
             type="text"
             value={cp}
             onChange={(e) => setCP(e.target.value)}
             onFocus={() => openDrawer('cp', cp)}
             placeholder="Dirección de la empresa"
-            className="mt-1 w-20 p-2 border bg-base rounded-md text-base-content"
+            className="mt-1 w-20 p-2 border rounded-md text-base-content"
           />
-        </div>
-        <div>
+
+
           <label className="block text-base">Localidad</label>
           <input
             type="text"
@@ -216,10 +249,9 @@ export default function EmpresaForm() {
             onChange={(e) => setLocalidad(e.target.value)}
             onFocus={() => openDrawer('localidad', localidad)}
             placeholder="Localidad de la empresa"
-            className="mt-1 w-full p-2 border bg-base rounded-md text-base-content"
+            className="mt-1 w-34 p-2 border bg-base rounded-md text-base-content"
           />
-        </div>
-        <div>
+
           <label className="block text-base">Provincia</label>
           <input
             type="text"
@@ -227,10 +259,10 @@ export default function EmpresaForm() {
             onChange={(e) => setProvincia(e.target.value)}
             onFocus={() => openDrawer('provincia', provincia)}
             placeholder="Provincia de la empresa"
-            className="mt-1 w-full p-2 border bg-base rounded-md text-base-content"
+            className="mt-1 w-34 p-2 border bg-base rounded-md text-base-content"
           />
-        </div>
-        <div>
+
+
           <label className="block text-base">País</label>
           <input
             type="text"
@@ -240,8 +272,6 @@ export default function EmpresaForm() {
             placeholder="País de la empresa"
             className="mt-1 w-full p-2 border bg-base rounded-md text-base-content"
           />
-        </div>
-        <div>
           <label className="block text-base">Teléfono</label>
           <input
             type="text"
@@ -249,12 +279,10 @@ export default function EmpresaForm() {
             onChange={(e) => setTelefono(e.target.value)}
             onFocus={() => openDrawer('telefono', telefono)}
             placeholder="Teléfono de la empresa"
-            className="mt-1 w-40 p-2 border bg-base rounded-md text-base-content"
+            className="w-40 p-2 border bg-base rounded-md text-base-content"
           />
-        </div>
-        <div>
           <label className="block text-base">Email</label>
-          <input
+           <input
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -263,7 +291,18 @@ export default function EmpresaForm() {
             className="mt-1 w-full p-2 border bg-base rounded-md text-base-content"
           />
         </div>
-        <div>
+  </div>
+</div>
+<br/><br/>
+<form onSubmit={handleSubmit} className="space-y-6">
+
+
+
+<div className="card bg-base-300 w-full shadow-xl text-base-content grid ">
+<div className="card-body">
+<h2 className=" card-title font-bold text-base mb-6  ">Otros Datos</h2>
+
+{/* web redes sociales */}
           <label className="block text-base">Web</label>
           <input
             type="text"
@@ -273,9 +312,8 @@ export default function EmpresaForm() {
             placeholder="Web de la empresa"
             className="mt-1 w-full p-2 border bg-base rounded-md text-base-content"
           />
-        </div>
-        <div>
-          <label className="block text-base">Facebook</label>
+
+<label className="block text-base">Facebook</label>
           <input
             type="text"
             value={facebook}
@@ -284,9 +322,8 @@ export default function EmpresaForm() {
             placeholder="Facebook de la empresa"
             className="mt-1 w-full p-2 border bg-base rounded-md text-base-content"
           />
-        </div>
-        <div>
-          <label className="block text-base">Instagram</label>
+
+<label className="block text-base">Instagram</label>
           <input
             type="text"
             value={instagram}
@@ -295,26 +332,17 @@ export default function EmpresaForm() {
             placeholder="Instagram de la empresa"
             className="mt-1 w-full p-2 border bg-base rounded-md text-base-content"
           />
-        </div>
-          
-          {/* Botones de acción */}
 
-        <div className="flex justify-end space-x-4 mt-8">
-          <button
-            type="button"
-            className="px-4 py-2 border bg-warning text-white rounded-md hover:bg-gray-100"
-            onClick={() => console.log('Cancelado')}
-          >
-            Cancelar
-          </button>
-          <button
-            type="submit"
-            className="px-4 py-2 border bg-success text-black rounded-md flex items-center space-x-2"
-          >
-            <SaveIcon className="w-5 h-5" />
-            <span>Guardar Cambios</span>
-          </button>
         </div>
+        <div>
+        
+        </div>
+        <div>
+        
+        </div>
+        </div>
+  
+  
       </form>
 
       {/* Drawer del Teclado Virtual */}
@@ -327,6 +355,8 @@ export default function EmpresaForm() {
           onClearAll={clearCurrentInput} // Llama a clearCurrentInput cuando "Borrar todo" es presionado
         />
       )}
-    </div>
+
+    </>
+   
   );
 }
