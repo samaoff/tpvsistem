@@ -6,8 +6,8 @@ const prisma = new PrismaClient();
 
 export async function GET() {
   try {
-    const familia = await prisma.familia.findMany(); // Obtener todas las familias
-    return NextResponse.json({ success: true, data: familia });
+    const producto = await prisma.producto.findMany(); 
+    return NextResponse.json({ success: true, data: producto });
   } catch (error) {
     console.error(error);
     return NextResponse.json({ success: false, error: 'Error al obtener datos' }, { status: 500 });

@@ -150,13 +150,15 @@ export default function EmpresaForm() {
 
   return (
     <>
+    <form onSubmit={handleSubmit} className="space-y-6">
+
   {/* Botones de acción en un contenedor fijo */}
-  <div className="join join-horizontal fixed bottom-5 right-5  z-50 ">
+  <div className="join join-horizontal fixed top-50 right-5  z-50 ">
   <button
     type="submit"
     className="btn join-item bg-base-content text-base-100 hover:bg-neutral-focus transition duration-200 flex items-center space-x-11 w-full h-42 rounded-full"
   >
-    <SaveIcon className="w-5 h-5" />
+    <SaveIcon className="w-5 h-5" />Guardar
   </button>
 </div>
     
@@ -208,7 +210,7 @@ export default function EmpresaForm() {
   
 </div>
 </div>
-<br/><br/>
+
 
 
 
@@ -221,7 +223,7 @@ export default function EmpresaForm() {
   <h2 className=" card-title font-bold text-base mb-6  ">Datos de la Empresa</h2>
          {/* datos direccion */}
       
-        <div className='grid grid-cols-2 gap-3'>
+        <div className='grid grid-cols-4 justify-start gap-3'>
         <label className="block text-base">Dirección</label>
           <input
             type="text"
@@ -274,7 +276,7 @@ export default function EmpresaForm() {
           />
           <label className="block text-base">Teléfono</label>
           <input
-            type="text"
+            type="tel"
             value={telefono}
             onChange={(e) => setTelefono(e.target.value)}
             onFocus={() => openDrawer('telefono', telefono)}
@@ -283,7 +285,7 @@ export default function EmpresaForm() {
           />
           <label className="block text-base">Email</label>
            <input
-            type="text"
+            type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             onFocus={() => openDrawer('email', email)}
@@ -293,10 +295,6 @@ export default function EmpresaForm() {
         </div>
   </div>
 </div>
-<br/><br/>
-<form onSubmit={handleSubmit} className="space-y-6">
-
-
 
 <div className="card bg-base-300 w-full shadow-xl text-base-content grid ">
 <div className="card-body">

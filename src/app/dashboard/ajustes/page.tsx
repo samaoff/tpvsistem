@@ -87,7 +87,7 @@ export default function Settings() {
       Forest
     </button>
     <button
-      onClick={() => updateConfig('theme', 'mytheme')}
+      onClick={() => updateConfig('theme', 'nord')}
       className="w-28 h-14 rounded-lg bg-stone-900 text-white m-2"
     >
       halloween

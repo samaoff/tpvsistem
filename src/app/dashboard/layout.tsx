@@ -105,7 +105,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
                 <ul className="">
                   <li>
                     <Link
-                      href="/dashboard/general"
+                      href="/dashboard/administracion/perfilesusuarios"
                       className="flex items-center space-x-2 rounded-md p-2"
                     >
                          <span className="text-base">Perfiles de usuarios</span>
@@ -113,7 +113,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
                   </li>
                   <li>
                     <Link
-                      href="/dashboard/configuracion"
+                      href="/dashboard/administracion/usuarios"
                       className="flex items-center space-x-2rounded-md p-2"
                     >
                          <span className="text-base">Usuarios</span>
@@ -159,7 +159,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
                   </li>
                   <li>
                     <Link
-                      href="/dashboard/configuracion"
+                      href="/dashboard/administracion/alergenos"
                       className="flex items-center space-x-2rounded-md p-2"
                     >
                          <span className="text-base">Alergenos</span>
@@ -167,7 +167,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
                   </li>
                   <li>
                     <Link
-                      href="/dashboard/configuracion"
+                      href="/dashboard/administracion/impresora"
                       className="flex items-center space-x-2rounded-md p-2"
                     >
                          <span className="text-base">Impresoras</span>
@@ -175,7 +175,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
                   </li>
                   <li>
                     <Link
-                      href="/dashboard/configuracion"
+                      href="/dashboard/administracion/notaspreparacion"
                       className="flex items-center space-x-2rounded-md p-2"
                     >
                          <span className="text-base">Notas de preparacion</span>
@@ -183,7 +183,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
                   </li>
                   <li>
                     <Link
-                      href="/dashboard/configuracion"
+                        href="/dashboard/administracion/ordenpreparacion"
                       className="flex items-center space-x-2rounded-md p-2"
                     >
                          <span className="text-base">Orden de preparacion</span>
@@ -191,7 +191,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
                   </li>
                   <li>
                     <Link
-                      href="/dashboard/configuracion"
+                        href="/dashboard/administracion/mesas"
                       className="flex items-center space-x-2rounded-md p-2"
                     >
                          <span className="text-base">Mesas</span>
@@ -199,20 +199,13 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
                   </li>
                   <li>
                     <Link
-                      href="/dashboard/configuracion"
+                        href="/dashboard/administracion/ubicaciones"
                       className="flex items-center space-x-2rounded-md p-2"
                     >
                          <span className="text-base">Ubicaciones</span>
                     </Link>
                   </li>
-                  <li>
-                    <Link
-                      href="/dashboard/configuracion"
-                      className="flex items-center space-x-2rounded-md p-2"
-                    >
-                         <span className="text-base">Notas de preparacion</span>
-                    </Link>
-                  </li>
+         
                 </ul>
               </details>
             </li>

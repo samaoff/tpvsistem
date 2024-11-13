@@ -12,7 +12,7 @@ export const Header = () => {
     <div className="navbar flex flex-row items-center p-3">
       <div className="flex-1">
         <div className="flex text-center flex-col items-start">
-          <h1 className="text-2xl font-bold">{empresaNombre}</h1>
+          <h1 className="text-xsl font-bold">{empresaNombre}</h1>
           <h6 className="text-sm font-mono">Licencia pro</h6>
         </div>
  
@@ -21,10 +21,10 @@ export const Header = () => {
       <div className="flex bg flex-row justify-start items-center">
       <div className="join  lg:join-horizontal">
       <Link href="/dashboard/ajustes">
-      <button className="btn join-item font-bold text-lg bg-base-300 text-base "> 
+      <button className="btn join-item font-bold text-sm bg-base-300  "> 
           <LucideSettings></LucideSettings>
        </button> </Link>
-  <button className="btn join-item font-bold text-lg bg-base-content text-base-100"><LucideWorkflow />TPV</button>
+
 
 </div>
      

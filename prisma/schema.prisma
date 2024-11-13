@@ -13,8 +13,20 @@ generator client {
 model Usuario {
   id      Int     @id @default(autoincrement())
   nombre  String
-  email   String  @unique
+  usuario   String  @unique
+  password String
+  perfil   Perfil @relation(fields: [perfilId], references: [id])
+  perfilId Int
+  activo   Boolean @default(true)
+  solotpv Boolean @default(false)
 }
+
+model Perfil {
+  id      Int     @id @default(autoincrement())
+  nombre  String
+  usuarios Usuario[]
+}
+
 
 model Parametros {
   id           Int     @id @default(autoincrement())
@@ -49,13 +61,34 @@ model Familia {
   nombre       String
   descripcion  String?
   imagen       String?
+  productos    Producto[]
 }
 
+model Producto {
+  id           Int     @id @default(autoincrement())
+  nombre       String
+  descripcion  String?
+  precio     Float  // Este es el nuevo campo para almacenar el precio
+  imagen       String?
+  familia      Familia @relation(fields: [familiaId], references: [id])
+  familiaId    Int
+  alergenos    AlergenosProducto[]
+
+}
+
+model AlergenosProducto {
+  id           Int     @id @default(autoincrement())
+  producto     Producto @relation(fields: [productoId], references: [id])
+  productoId   Int
+  alergeno     Alergenos @relation(fields: [alergenoId], references: [id])
+  alergenoId   Int
+}
 
 model Alergenos {
   id           Int     @id @default(autoincrement())
   nombre       String
   descripcion  String?
   imagen       String?
+  productos    AlergenosProducto[]
 }
 

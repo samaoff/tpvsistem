@@ -1,38 +1,38 @@
-// src/app/familias/page.tsx
+// src/app/productos/page.tsx
 'use client';
 
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { LucideAArrowDown, LucideDelete, LucideEdit2, LucideTrash2 } from 'lucide-react';
+import { LucideEdit2, LucideTrash2 } from 'lucide-react';
 
-interface Familia {
+interface Productos {
   id: number;
   nombre: string;
   descripcion: string;
 }
 
-export default function FamiliasPage() {
-  const [familias, setFamilias] = useState<Familia[]>([]);
+export default function ProductosPage() {
+  const [productos, setProductos] = useState<Productos[]>([]);
 
   useEffect(() => {
     // Función para obtener los datos de la API
-    const fetchFamilias = async () => {
+    const fetchproductos = async () => {
       try {
-        const response = await axios.get('/api/familias/get'); // Llama a la API
+        const response = await axios.get('/api/productos/get'); // Llama a la API
         if (response.data.success) {
-          setFamilias(response.data.data); // Actualiza el estado con los datos obtenidos
+          setProductos(response.data.data); // Actualiza el estado con los datos obtenidos
         }
       } catch (error) {
-        console.error('Error fetching familias:', error);
+        console.error('Error fetching productos:', error);
       }
     };
 
-    fetchFamilias(); // Llama a la función para obtener datos
+    fetchproductos(); // Llama a la función para obtener datos
   }, []);
 
   return (
     <div className="card bg-base-300 p-5 text-base-content">
-      <h1 className="text-2xl font-semibold mb-4">Lista de Familias</h1>
+      <h1 className="text-2xl font-semibold mb-4">Lista de productos</h1>
       <table className="w-full table-auto -collapse">
         <thead>
           <tr className="bg-base-300">
@@ -43,11 +43,11 @@ export default function FamiliasPage() {
           </tr>
         </thead>
         <tbody>
-          {familias.map((familia) => (
-            <tr key={familia.id}>
-              <td className=" px-4 py-2">{familia.id}</td>
-              <td className=" px-4 py-2">{familia.nombre}</td>
-              <td className=" px-4 py-2">{familia.descripcion}</td>
+          {productos.map((producto) => (
+            <tr key={producto.id}>
+              <td className=" px-4 py-2">{producto.id}</td>
+              <td className=" px-4 py-2">{producto.nombre}</td>
+              <td className=" px-4 py-2">{producto.descripcion}</td>
               <td className=" px-4 py-2">
                 <div className='grid grid-cols-2'>
                   <LucideEdit2></LucideEdit2>
